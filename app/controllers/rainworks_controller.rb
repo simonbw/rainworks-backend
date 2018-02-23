@@ -1,15 +1,16 @@
 class RainworksController < ApplicationController
-  before_action :set_rainwork, only: [:show, :update, :destroy]
+  before_action :set_rainwork, only: [:show]
 
   # GET /rainworks
   def index
-    @rainworks = Rainwork.all
+    rainworks = Rainwork.all
 
     render json: @rainworks
   end
 
   # GET /rainworks/1
   def show
+    @rainwork = Rainwork.find(params[:id])
     render json: @rainwork
   end
 
@@ -27,13 +28,8 @@ class RainworksController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_rainwork
-    @rainwork = Rainwork.find(params[:id])
-  end
-
   # Only allow a trusted parameter "white list" through.
   def rainwork_params
-    params.require(:rainwork, :name).permit(:creator_name, :creator_email, :description, :image_url)
+    params.require(:rainwork, :name, :lat, :lng).permit(:creator_name, :creator_email, :description, :image_url)
   end
 end

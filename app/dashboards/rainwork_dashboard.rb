@@ -16,6 +16,8 @@ class RainworkDashboard < Administrate::BaseDashboard
     image_url: Field::Text,
     approval_status: Field::Enum,
     active: Field::Boolean,
+    lat: Field::LatLng,
+    lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -44,6 +46,8 @@ class RainworkDashboard < Administrate::BaseDashboard
     :image_url,
     :approval_status,
     :active,
+    :lat,
+    :lng,
     :created_at,
     :updated_at,
   ].freeze
@@ -57,6 +61,8 @@ class RainworkDashboard < Administrate::BaseDashboard
     :creator_email,
     :description,
     :image_url,
+    :lat,
+    :lng,
     :approval_status,
     :active,
   ].freeze
