@@ -1,0 +1,11 @@
+
+rails g scaffold \
+  Rainwork \
+  name:string \
+  creator_name:string \
+  creator_email:string \
+  description:text \
+  image_url:string \
+  approved:boolean \
+  active:boolean \
+  

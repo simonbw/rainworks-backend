@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  creator_name: MyString
+  creator_email: MyString
+  description: MyText
+  image_url: MyText
+  approved: false
+  active: false
+
+two:
+  name: MyString
+  creator_name: MyString
+  creator_email: MyString
+  description: MyText
+  image_url: MyText
+  approved: false
+  active: false
