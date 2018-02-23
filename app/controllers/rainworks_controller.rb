@@ -5,25 +5,25 @@ class RainworksController < ApplicationController
   def index
     rainworks = Rainwork.all
 
-    render json: @rainworks
+    render json: rainworks
   end
 
   # GET /rainworks/1
   def show
-    @rainwork = Rainwork.find(params[:id])
+    rainwork = Rainwork.find(params[:id])
     render json: @rainwork
   end
 
   # POST /rainworks
   def create
-    @rainwork = Rainwork.new(rainwork_params)
+    rainwork = Rainwork.new(rainwork_params)
 
     # TODO: Email notification
     
-    if @rainwork.save
-      render json: @rainwork, status: :created, location: @rainwork
+    if rainwork.save
+      render json: rainwork, status: :created, location: rainwork
     else
-      render json: @rainwork.errors, status: :unprocessable_entity
+      render json: rainwork.errors, status: :unprocessable_entity
     end
   end
 
