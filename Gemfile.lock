@@ -63,6 +63,8 @@ GEM
       momentjs-rails (~> 2.8)
       sass-rails (~> 5.0)
       selectize-rails (~> 0.6)
+    administrate-field-image (1.1.0)
+      administrate (>= 0.2.0.rc1)
     administrate-field-lat_lng (1.7.0)
       administrate (>= 0.3, < 0.9)
       leaflet-rails (~> 1.0)
@@ -201,6 +203,7 @@ PLATFORMS
 DEPENDENCIES
   administrate
   administrate-field-enum!
+  administrate-field-image
   administrate-field-lat_lng
   bootsnap (>= 1.1.0)
   byebug

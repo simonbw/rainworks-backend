@@ -34,3 +34,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'administrate'
 gem 'administrate-field-enum', git: "https://github.com/guillaumemaka/administrate-field-enum.git", branch: "master"
 gem 'administrate-field-lat_lng'
+gem 'administrate-field-image'

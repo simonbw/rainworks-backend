@@ -13,7 +13,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     creator_name: Field::String,
     creator_email: Field::String,
     description: Field::Text,
-    image_url: Field::Text,
+    image_url: Field::Image,
     approval_status: Field::Enum,
     active: Field::Boolean,
     lat: Field::LatLng,
