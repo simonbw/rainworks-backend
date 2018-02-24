@@ -32,7 +32,8 @@ class RainworkDashboard < Administrate::BaseDashboard
     :name,
     :creator_name,
     :creator_email,
-    :approval_status
+    :approval_status,
+    :active
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

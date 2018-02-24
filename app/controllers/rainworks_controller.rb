@@ -3,7 +3,19 @@ class RainworksController < ApplicationController
 
   # GET /rainworks
   def index
-    rainworks = Rainwork.all
+    rainworks = Rainwork.all.where(
+      active: true,
+      approval_status: :accepted
+    ).select(:id,
+      :created_at,
+      :creator_name,
+      :description,
+      :lat,
+      :lng,
+      :name,
+      :updated_at,
+      :image_url,
+    )
 
     render json: rainworks
   end
@@ -11,7 +23,7 @@ class RainworksController < ApplicationController
   # GET /rainworks/1
   def show
     rainwork = Rainwork.find(params[:id])
-    render json: @rainwork
+    render json: rainwork
   end
 
   # POST /rainworks
@@ -19,7 +31,7 @@ class RainworksController < ApplicationController
     rainwork = Rainwork.new(rainwork_params)
 
     # TODO: Email notification
-    
+
     if rainwork.save
       render json: rainwork, status: :created, location: rainwork
     else
