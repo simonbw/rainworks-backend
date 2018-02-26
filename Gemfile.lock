@@ -73,6 +73,8 @@ GEM
       rake
       thor (>= 0.14.0)
     arel (9.0.0)
+    attribute-defaults (0.8.0)
+      activerecord (>= 5.0.0, < 6.0.0)
     autoprefixer-rails (8.0.0)
       execjs
     aws-partitions (1.67.0)
@@ -745,6 +747,7 @@ DEPENDENCIES
   administrate-field-enum!
   administrate-field-image
   administrate-field-lat_lng
+  attribute-defaults
   aws-sdk
   bootsnap (>= 1.1.0)
   byebug

@@ -39,3 +39,5 @@ gem 'administrate-field-lat_lng'
 gem 'administrate-field-image'
 
 gem 'aws-sdk'
+
+gem 'attribute-defaults'
