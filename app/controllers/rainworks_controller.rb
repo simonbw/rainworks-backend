@@ -6,7 +6,8 @@ class RainworksController < ApplicationController
     rainworks = Rainwork.all.where(
       active: true,
       approval_status: :accepted
-    ).select(:id,
+    ).select(
+      :id,
       :created_at,
       :creator_name,
       :description,
@@ -30,10 +31,20 @@ class RainworksController < ApplicationController
   def create
     rainwork = Rainwork.new(rainwork_params)
 
+    filename = SecureRandom.uuid
+    object = S3_BUCKET.object(filename)
+    presigned_post = object.presigned_post()
+
+    rainwork.image_url = object.public_url
+
+    # TODO: Do we want to have a confirmation step after the image is uploaded?
     # TODO: Email notification
 
     if rainwork.save
-      render json: rainwork, status: :created, location: rainwork
+      response = {
+        image_upload_url: presigned_post.url,
+      }
+      render json: response, status: :created, location: rainwork
     else
       render json: rainwork.errors, status: :unprocessable_entity
     end
@@ -42,6 +53,7 @@ class RainworksController < ApplicationController
   private
   # Only allow a trusted parameter "white list" through.
   def rainwork_params
-    params.require(:rainwork, :name, :lat, :lng).permit(:creator_name, :creator_email, :description, :image_url)
+    params.require([:name, :lat, :lng])
+    params.permit(:name, :lat, :lng, :creator_name, :creator_email, :description)
   end
 end
