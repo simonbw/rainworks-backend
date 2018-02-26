@@ -33,7 +33,7 @@ class RainworksController < ApplicationController
 
     filename = SecureRandom.uuid
     object = S3_BUCKET.object(filename)
-    presigned_post = object.presigned_post()
+    upload_url = object.presigned_url(:put, acl: 'public-read')
 
     rainwork.image_url = object.public_url
 
@@ -42,7 +42,7 @@ class RainworksController < ApplicationController
 
     if rainwork.save
       response = {
-        image_upload_url: presigned_post.url,
+        image_upload_url: upload_url,
       }
       render json: response, status: :created, location: rainwork
     else
