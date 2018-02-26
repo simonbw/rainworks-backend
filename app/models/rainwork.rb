@@ -1,3 +1,9 @@
 class Rainwork < ApplicationRecord
-	enum approval_status: [:pending, :accepted, :rejected]
+  after_initialize :init
+  enum approval_status: [:pending, :accepted, :rejected]
+
+  def init
+    self.approval_status ||= :pending
+    self.active ||= false
+  end
 end
