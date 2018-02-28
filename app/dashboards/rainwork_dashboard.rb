@@ -20,6 +20,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    device_id: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -51,6 +52,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :lng,
     :created_at,
     :updated_at,
+    :device_id,
   ].freeze
 
   # FORM_ATTRIBUTES
