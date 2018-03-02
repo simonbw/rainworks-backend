@@ -5,7 +5,6 @@ module Api
     # GET /api/active-rainworks
     def active_rainworks
       @rainworks = Rainwork.all.where(
-        active: true,
         approval_status: :accepted
       ).select(*public_fields)
 

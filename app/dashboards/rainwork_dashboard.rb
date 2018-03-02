@@ -34,7 +34,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     :creator_name,
     :creator_email,
     :approval_status,
-    :active
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,7 +46,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     :description,
     :image_url,
     :approval_status,
-    :active,
     :lat,
     :lng,
     :created_at,
@@ -67,7 +65,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     :lat,
     :lng,
     :approval_status,
-    :active,
   ].freeze
 
   # Overwrite this method to customize how rainworks are displayed
