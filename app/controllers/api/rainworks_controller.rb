@@ -34,9 +34,9 @@ module Api
       @rainwork.image_url = object.public_url
 
       # TODO: Do we want to have a confirmation step after the image is uploaded?
-      # TODO: Email notification
 
       if @rainwork.save
+        NotificationsMailer.submission_alert(@rainwork).deliver_later
         response = {
           image_upload_url: upload_url,
         }
