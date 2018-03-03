@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  report_type: 1
+  device_id: MyString
+  rainwork: one
+
+two:
+  report_type: 1
+  device_id: MyString
+  rainwork: two

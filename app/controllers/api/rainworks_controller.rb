@@ -1,7 +1,5 @@
 module Api
   class RainworksController < ApplicationController
-    before_action :set_rainwork, only: [:show]
-
     # GET /api/active-rainworks
     def active_rainworks
       @rainworks = Rainwork.all.where(
@@ -11,10 +9,7 @@ module Api
       render json: @rainworks
     end
 
-    def index
-      active_rainworks
-    end
-
+    # GET /api/submissions
     def list_submissions
       @rainworks = Rainwork.all.where(
         device_id: params[:device_id]
@@ -23,7 +18,7 @@ module Api
       render json: @rainworks
     end
 
-    # POST /api/rainworks
+    # POST /api/submissions
     def create
       @rainwork = Rainwork.new(rainwork_params)
 
@@ -42,7 +37,19 @@ module Api
         }
         render json: response, status: :created
       else
-        render json: rainwork.errors, status: :unprocessable_entity
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
+
+    # POST /api/report
+    def create_report
+      @report = Report.new(report_params)
+
+      if @report.save
+        NotificationsMailer.report_alert(@report).deliver_later
+        render json: @report, status: :created
+      else
+        render json: @report.errors, status: :unprocessable_entity
       end
     end
 
@@ -63,6 +70,11 @@ module Api
     def rainwork_params
       params.require([:name, :lat, :lng, :device_id])
       params.permit(:name, :lat, :lng, :device_id, :creator_name, :creator_email, :description)
+    end
+
+    def report_params
+      params.require([:device_id, :rainwork_id, :report_type])
+      params.permit(:device_id, :rainwork_id, :report_type)
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_28_162345) do
+ActiveRecord::Schema.define(version: 2018_03_03_154730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,4 +30,14 @@ ActiveRecord::Schema.define(version: 2018_02_28_162345) do
     t.string "device_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "report_type"
+    t.string "device_id"
+    t.bigint "rainwork_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rainwork_id"], name: "index_reports_on_rainwork_id"
+  end
+
+  add_foreign_key "reports", "rainworks"
 end
