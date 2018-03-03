@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
+  namespace :api do
+  end
   namespace :admin do
     resources :rainworks
+    resources :devices
+    resources :reports
 
     root to: 'rainworks#index'
   end
   namespace :api do
-    get '/active-rainworks', to: 'rainworks#active_rainworks'
-    post '/submissions', to: 'rainworks#create'
-    get '/submissions/:device_id', to: 'rainworks#list_submissions'
-    post '/report', to: 'rainworks#create_report'
+    resources :devices, only: [:create]
+    resources :submissions, only: [:index, :create]
+    resources :rainworks, only: [:index]
+    resources :reports, only: [:create]
   end
 end

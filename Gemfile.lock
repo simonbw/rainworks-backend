@@ -68,6 +68,9 @@ GEM
     administrate-field-lat_lng (1.7.0)
       administrate (>= 0.3, < 0.9)
       leaflet-rails (~> 1.0)
+    after_commit_action (1.1.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     appraisal (2.2.0)
       bundler
       rake
@@ -617,6 +620,10 @@ GEM
     builder (3.2.3)
     byebug (10.0.0)
     concurrent-ruby (1.0.5)
+    counter_culture (1.9.1)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      after_commit_action (~> 1.0)
     crass (1.0.3)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
@@ -751,6 +758,7 @@ DEPENDENCIES
   aws-sdk
   bootsnap (>= 1.1.0)
   byebug
+  counter_culture
   dotenv-rails
   listen (>= 3.0.5, < 3.2)
   pg

@@ -41,3 +41,5 @@ gem 'administrate-field-image'
 gem 'aws-sdk'
 
 gem 'attribute-defaults'
+
+gem 'counter_culture'

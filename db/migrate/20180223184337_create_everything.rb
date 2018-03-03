@@ -7,7 +7,7 @@ class CreateEverything < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    add_index :devices, :device_uuid
+    add_index :devices, :device_uuid, unique: true
 
     create_table :rainworks do |t|
       t.string :name

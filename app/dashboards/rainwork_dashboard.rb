@@ -20,20 +20,24 @@ class RainworkDashboard < Administrate::BaseDashboard
     lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    device_id: Field::String,
+    device: Field::BelongsTo,
+    reports: Field::HasMany,
+    report_count: Field::Number,
+    found_it_count: Field::Number,
+    missing_count: Field::Number,
+    faded_count: Field::Number,
+    inappropriate_count: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.
-  #
-  # By default, it's limited to four items to reduce clutter on index pages.
-  # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :created_at,
     :name,
     :creator_name,
-    :creator_email,
     :approval_status,
+    :report_count,
+    :found_it_count,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -50,7 +54,13 @@ class RainworkDashboard < Administrate::BaseDashboard
     :lng,
     :created_at,
     :updated_at,
-    :device_id,
+    :device,
+    :reports,
+    :report_count,
+    :found_it_count,
+    :missing_count,
+    :faded_count,
+    :inappropriate_count,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -61,6 +71,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :creator_name,
     :creator_email,
     :description,
+    :device,
     :image_url,
     :lat,
     :lng,

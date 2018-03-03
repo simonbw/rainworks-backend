@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_23_184337) do
+ActiveRecord::Schema.define(version: 2018_03_03_193233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_02_23_184337) do
     t.string "push_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["device_uuid"], name: "index_devices_on_device_uuid"
+    t.index ["device_uuid"], name: "index_devices_on_device_uuid", unique: true
   end
 
   create_table "rainworks", force: :cascade do |t|
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2018_02_23_184337) do
     t.bigint "device_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "report_count", default: 0, null: false
+    t.integer "found_it_count", default: 0, null: false
+    t.integer "faded_count", default: 0, null: false
+    t.integer "missing_count", default: 0, null: false
+    t.integer "inappropriate_count", default: 0, null: false
     t.index ["device_id"], name: "index_rainworks_on_device_id"
   end
 
