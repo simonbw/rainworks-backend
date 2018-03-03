@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_03_154730) do
+ActiveRecord::Schema.define(version: 2018_02_23_184337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "devices", force: :cascade do |t|
+    t.string "device_uuid"
+    t.string "push_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_uuid"], name: "index_devices_on_device_uuid"
+  end
 
   create_table "rainworks", force: :cascade do |t|
     t.string "name"
@@ -23,21 +31,26 @@ ActiveRecord::Schema.define(version: 2018_03_03_154730) do
     t.text "image_url"
     t.integer "approval_status"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
-    t.string "device_id"
+    t.bigint "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_rainworks_on_device_id"
   end
 
   create_table "reports", force: :cascade do |t|
-    t.integer "report_type"
-    t.string "device_id"
+    t.bigint "device_id"
     t.bigint "rainwork_id"
+    t.integer "report_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_reports_on_device_id"
     t.index ["rainwork_id"], name: "index_reports_on_rainwork_id"
+    t.index ["report_type", "device_id", "rainwork_id"], name: "index_reports_on_report_type_and_device_id_and_rainwork_id", unique: true
   end
 
+  add_foreign_key "rainworks", "devices"
+  add_foreign_key "reports", "devices"
   add_foreign_key "reports", "rainworks"
 end
