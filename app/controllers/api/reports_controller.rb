@@ -1,6 +1,12 @@
 module Api
   class ReportsController < ApplicationController
-    # POST /api/report
+
+    def index
+      @device = Device.find_or_create_by!(device_uuid: params.require(:device_uuid))
+      @reports = @device.reports
+      render json: @reports
+    end
+
     def create
       @report = Report.new(report_params)
       @report.device = Device.find_or_create_by(device_uuid: params.require(:device_uuid))

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-  end
   namespace :admin do
     resources :rainworks
     resources :devices
@@ -12,6 +10,6 @@ Rails.application.routes.draw do
     resources :devices, only: [:create]
     resources :submissions, only: [:index, :create]
     resources :rainworks, only: [:index]
-    resources :reports, only: [:create]
+    resources :reports, only: [:index, :create]
   end
 end
