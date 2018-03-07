@@ -35,13 +35,13 @@ module Api
 
     private
     def submission_params
-      params.require([:name, :lat, :lng])
-      params.permit(:name, :lat, :lng, :creator_name, :creator_email, :description)
+      params.require([:name, :lat, :lng, :installation_date])
+      params.permit(:name, :lat, :lng, :installation_date, :creator_name, :creator_email, :description)
     end
 
     # Fields to return for a user's submission
     def submission_fields
-      [:id, :approval_status, :created_at, :creator_name, :description, :lat, :lng, :name, :updated_at, :image_url, :report_count, :found_it_count, :missing_count, :faded_count, :inappropriate_count]
+      [:id, :approval_status, :created_at, :installation_date, :creator_name, :description, :lat, :lng, :name, :updated_at, :image_url, :report_count, :found_it_count, :missing_count, :faded_count, :inappropriate_count]
     end
   end
 end

@@ -11,7 +11,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     creator_name: Field::String,
-    creator_email: Field::String,
     description: Field::Text,
     image_url: Field::Image,
     approval_status: Field::Enum,
@@ -20,6 +19,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    installation_date: Field::DateTime,
     device: Field::BelongsTo,
     reports: Field::HasMany,
     report_count: Field::Number,
@@ -33,6 +33,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's index page.
   COLLECTION_ATTRIBUTES = [
     :created_at,
+    :installation_date,
     :name,
     :creator_name,
     :approval_status,
@@ -46,14 +47,12 @@ class RainworkDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :creator_name,
-    :creator_email,
     :description,
     :image_url,
     :approval_status,
     :lat,
     :lng,
-    :created_at,
-    :updated_at,
+    :installation_date,
     :device,
     :reports,
     :report_count,
@@ -61,6 +60,8 @@ class RainworkDashboard < Administrate::BaseDashboard
     :missing_count,
     :faded_count,
     :inappropriate_count,
+    :created_at,
+    :updated_at,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -69,7 +70,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :creator_name,
-    :creator_email,
+    :installation_date,
     :description,
     :device,
     :image_url,
@@ -81,7 +82,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how rainworks are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(rainwork)
-  #   "Rainwork ##{rainwork.id}"
-  # end
+  def display_resource(rainwork)
+    "RW \"#{rainwork.name}\""
+  end
 end

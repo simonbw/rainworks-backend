@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_03_193233) do
+ActiveRecord::Schema.define(version: 2018_03_07_002042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_03_03_193233) do
     t.integer "faded_count", default: 0, null: false
     t.integer "missing_count", default: 0, null: false
     t.integer "inappropriate_count", default: 0, null: false
+    t.datetime "installation_date"
     t.index ["device_id"], name: "index_rainworks_on_device_id"
   end
 

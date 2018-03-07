@@ -12,7 +12,7 @@ module Api
     private
     # Fields to return to general public
     def public_fields
-      [:id, :created_at, :creator_name, :description, :lat, :lng, :name, :updated_at, :image_url, :found_it_count]
+      [:id, :creator_name, :installation_date, :description, :lat, :lng, :name, :updated_at, :image_url, :found_it_count]
     end
   end
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root to: 'rainworks#index'
   end
   namespace :api do
-    resources :devices, only: [:create]
+    resources :devices, only: [:update], param: :device_uuid
     resources :submissions, only: [:index, :create]
     resources :rainworks, only: [:index]
     resources :reports, only: [:index, :create]
