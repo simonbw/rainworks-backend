@@ -1,0 +1,12 @@
+<p>
+    View it in the admin interface:
+    <a href="https://rainworks-backend.herokuapp.com/admin/reports/<%= @report.id %>">
+        https://rainworks-backend.herokuapp.com/admin/reports/<%= @report.id %>
+    </a>
+</p>
+
+<dl>
+    <dt>Rainwork name:</dt> <dd><%= @report.rainwork.name %></dd>
+    <dt>Submitted At:</dt> <dd><%= @report.created_at %></dd>
+    <dt>device_uuid:</dt> <dd><%= @report.device.device_uuid %></dd>
+</dl>
