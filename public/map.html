@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+      }
+
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+
+      .tooltip-container {
+        max-width: 400px;
+      }
+
+      .rainwork-title {
+        margin: 12px 0;
+      }
+
+      .rainwork-subtitle {
+        margin-bottom: 12px;
+      }
+
+      .rainwork-image-container {
+        max-width: 100%;
+        height: 300px;
+        overflow: hidden;
+        background-color: #EEE;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .rainwork-image {
+        width: 100%;
+        height: auto;
+      }
+
+      .rainwork-description {
+        line-height: 1.4;
+        text-align: justify;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: { lat: 0, lng: 0 }
+        });
+
+        const tooltip = new google.maps.InfoWindow({
+          content: 'Tooltip Content'
+        });
+
+        fetch('/api/rainworks')
+          .then(response => response.json())
+          .then(rainworks => {
+            console.log(rainworks);
+            rainworks.forEach(rainwork => {
+              const marker = new google.maps.Marker({
+                position: rainwork, // already has 'lat' and 'lng'
+                map: map,
+                title: rainwork['name']
+              });
+
+              marker.addListener('click', () => {
+                tooltip.close();
+                // map.panTo(marker.getPosition());
+                tooltip.setContent(makeTooltipContent(rainwork));
+                tooltip.open(map, marker);
+              });
+            });
+          });
+
+        function makeTooltipContent(rainwork) {
+          const container = document.createElement('div');
+          container.classList.add('tooltip-container');
+
+          const title = document.createElement('h1');
+          title.classList.add('rainwork-title');
+          title.textContent = rainwork['name'];
+          container.appendChild(title);
+
+          if (rainwork['creator_name'] || rainwork['installation_date']) {
+            const subtitle = document.createElement('div');
+            subtitle.classList.add('rainwork-subtitle');
+
+            let text = 'Created';
+            if (rainwork['creator_name']) {
+              text += ' by ' + rainwork['creator_name'];
+            }
+            if (rainwork['installation_date']) {
+              text += ' on ' + formatDate(rainwork['installation_date']);
+            }
+            subtitle.textContent = text;
+
+            container.appendChild(subtitle);
+          }
+
+          if (rainwork['image_url']) {
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('rainwork-image-container');
+            container.appendChild(imageContainer);
+
+            const image = new Image();
+            image.classList.add('rainwork-image');
+            image.src = rainwork['image_url'];
+            imageContainer.appendChild(image);
+          }
+
+          if (rainwork['description']) {
+            const description = document.createElement('p');
+            description.classList.add('rainwork-description');
+            description.textContent = rainwork['description'];
+            container.appendChild(description);
+          }
+
+          return container;
+        }
+
+        const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        function formatDate(dateString) {
+          const date = new Date(dateString);
+          return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        }
+      }
+    </script>
+    <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDR4UChtWxMb50yFH35wr5jyul19D_H2Ro&callback=initMap"
+    >
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
