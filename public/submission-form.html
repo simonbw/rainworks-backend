@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        height: 100%;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      form {
+        padding: 1em;
+      }
+
+      label {
+        color: #333;
+        display: block;
+        width: 100%;
+        padding: 0.5em 0;
+      }
+
+      .required {
+        color: #999;
+        font-size: 0.8em;
+      }
+
+      input,
+      textarea {
+        border-radius: 4px;
+        border: 1px solid #BBB;
+        display: block;
+        font-size: 1em;
+        margin: 1px;
+        padding: 0.5em;
+        transition: border-color 0.3s ease;
+        width: 100%;
+      }
+
+      input:focus {
+        margin: 0;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 5em;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border: 2px solid #14a9e6;
+      }
+
+      button {
+        background: #14a9e6;
+        border-radius: 4px;
+        border: 2px solid #14a9e6;
+        color: #FFF;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1em;
+        margin: 2px;
+        padding: 0.5em 1em;
+        transition: background-color 0.1s ease;
+      }
+
+      button:focus,
+      button:hover {
+        outline: none;
+        border-color: #4bbfef;
+        background: #4bbfef;
+      }
+
+      button:active {
+        background-color: #1298cf;
+        border-color: #1298cf;
+      }
+
+    </style>
+  </head>
+  <body>
+    <form action="/api/submissions" method="POST">
+      <label>
+        Title <span class="required">(required)</span>
+        <input required type="text" name="name"/>
+      </label>
+      <label>
+        Creator
+        <input type="text" name="creator_name"/>
+      </label>
+      <label>
+        Installation Date
+        <input type="date" name="installation_date"/>
+      </label>
+      <label>
+        Description
+        <textarea name="description"></textarea>
+      </label>
+      <input type="hidden" name="device_uuid" value="submission-form">
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

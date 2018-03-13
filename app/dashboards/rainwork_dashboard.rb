@@ -44,12 +44,11 @@ class RainworkDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :id,
+    :approval_status,
     :name,
     :creator_name,
     :description,
     :image_url,
-    :approval_status,
     :lat,
     :lng,
     :installation_date,
@@ -62,6 +61,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :inappropriate_count,
     :created_at,
     :updated_at,
+    :id,
   ].freeze
 
   # FORM_ATTRIBUTES

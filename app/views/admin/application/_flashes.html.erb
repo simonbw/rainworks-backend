@@ -1,0 +1,38 @@
+<%#
+# Flash Partial
+
+This partial renders flash messages on every page.
+
+## Relevant Helpers:
+
+- `flash`:
+  Returns a hash,
+  where the keys are the type of flash (alert, error, notice, etc)
+  and the values are the message to be displayed.
+%>
+
+<% if flash.any? %>
+  <style>
+    .flashes {
+    }
+    .flash {
+      background: #999;
+      color: #FFF;
+      text-align: center;
+    }
+    .flash-accepted {
+      background-color: #9C9;
+    }
+    .flash-rejected {
+      background-color: #C99;
+    }
+    .flash-expired {
+      background-color: #CC9;
+    }
+  </style>
+  <div class="flashes">
+    <% flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>"><%= value %></div>
+    <% end -%>
+  </div>
+<% end %>

@@ -1,0 +1,102 @@
+<%#
+# Show
+
+This view is the template for the show page.
+It renders the attributes of a resource,
+as well as a link to its edit page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Show][1].
+  Contains methods for accessing the resource to be displayed on the page,
+  as well as helpers for describing how each attribute of the resource
+  should be displayed.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
+%>
+
+<% content_for(:title) { "#{t("administrate.actions.show")} #{page.page_title}" } %>
+
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
+    <%= link_to(
+      "#{t("administrate.actions.edit")} #{page.page_title}",
+      [:edit, namespace, page.resource],
+      class: "button",
+    ) if valid_action? :edit %>
+  </div>
+</header>
+
+<header class="main-content__header">
+  <style>
+    .accept, .reject, .expire {
+      margin-right: 10px
+    }
+    .accept {
+      background-color: #0C0;
+    }
+    .accept:hover {
+      background-color: #0A0;
+    }
+    .reject {
+      background-color: #C00;
+    }
+    .reject:hover {
+      background-color: #A00;
+    }
+    .expire {
+      background-color: #EA0;
+    }
+    .expire:hover {
+      background-color: #B90;
+    }
+  </style>
+  <% if (page.resource.approval_status != 'accepted') %>
+    <%= link_to(
+      "Accept",
+      [:approve, namespace, page.resource],
+      class: "button accept"
+    ) %>
+  <% else %>
+    <button class="accept" disabled>Accept</button>
+  <% end %>
+  <% if (page.resource.approval_status != 'rejected') %>
+    <%= link_to(
+      "Reject",
+      [:reject, namespace, page.resource],
+      class: "button reject"
+    )%>
+  <% else %>
+    <button class="reject" disabled>Reject</button>
+  <% end %>
+  <% if (page.resource.approval_status != 'expired') %>
+    <%= link_to(
+      "Expire",
+      [:expire, namespace, page.resource],
+      class: "button expire"
+    ) %>
+  <% else%>
+    <button class="expire" disabled>Expire</button>
+  <% end %>
+</header> 
+
+<section class="main-content__body">
+  <dl>
+    <% page.attributes.each do |attribute| %>
+      <dt class="attribute-label" id="<%= attribute.name %>">
+      <%= t(
+        "helpers.label.#{resource_name}.#{attribute.name}",
+        default: attribute.name.titleize,
+      ) %>
+      </dt>
+
+      <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
+          ><%= render_field attribute %></dd>
+    <% end %>
+  </dl>
+</section>

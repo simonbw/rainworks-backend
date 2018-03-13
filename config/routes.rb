@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :rainworks
+    resources :rainworks do
+      get :approve, on: :member
+      get :reject, on: :member
+      get :expire, on: :member
+    end
     resources :devices
     resources :reports
 
