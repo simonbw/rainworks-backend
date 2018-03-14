@@ -40,6 +40,8 @@ gem 'administrate-field-image'
 
 gem 'aws-sdk'
 
+gem 'exponent-server-sdk'
+
 gem 'attribute-defaults'
 
 gem 'counter_culture'
