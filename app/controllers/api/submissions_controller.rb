@@ -14,6 +14,12 @@ module Api
       @rainwork = Rainwork.new(submission_params)
       @rainwork.device = Device.find_or_create_by(device_uuid: params.require(:device_uuid))
 
+      if @device.initial_submission_status == :accepted
+        @rainwork.approval_status = :accepted
+      elsif @device.initial_submission_status == :rejected
+        @rainwork.approval_status = :rejected
+      end
+
       filename = SecureRandom.uuid
       object = S3_BUCKET.object(filename)
       upload_url = object.presigned_url(:put, acl: 'public-read')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_15_174905) do
+ActiveRecord::Schema.define(version: 2018_03_15_204519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_03_15_174905) do
     t.string "push_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
+    t.integer "initial_submission_status"
     t.index ["device_uuid"], name: "index_devices_on_device_uuid", unique: true
   end
 

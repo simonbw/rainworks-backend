@@ -15,6 +15,8 @@ class DeviceDashboard < Administrate::BaseDashboard
     push_token: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    initial_submission_status: Field::Enum,
+    nickname: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -32,6 +34,8 @@ class DeviceDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
+    :nickname,
+    :initial_submission_status,
     :device_uuid,
     :push_token,
     :created_at,
@@ -44,6 +48,8 @@ class DeviceDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
+    :nickname,
+    :initial_submission_status,
     :device_uuid,
     :push_token,
   ].freeze
