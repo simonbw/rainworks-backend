@@ -23,8 +23,12 @@ module Admin
 
       @rainwork.approval_status = :rejected
 
-      if @rainwork.save
-        send_notification(@rainwork, 'Your rainwork submission was rejected.', :rejected);
+      if params[:rejection_reason]
+        @rainwork.rejection_reason = params[:rejection_reason]
+
+        if @rainwork.save
+          send_notification(@rainwork, 'Your rainwork submission was rejected.', :rejected);
+        end
 
         flash[:rejected] = 'Rainwork was rejected'
         redirect_to url_for(action: :show)

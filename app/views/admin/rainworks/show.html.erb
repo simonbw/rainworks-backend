@@ -56,21 +56,28 @@ as well as a link to its edit page.
       background-color: #B90;
     }
   </style>
+  <script>
+    function rejectSubmission(url) {
+      const reason = prompt('Reason for rejecting');
+      if (reason != null) {
+        window.location = url + '?rejection_reason=' + encodeURIComponent(reason);
+      }
+    }
+  </script>
   <% if (page.resource.approval_status != 'accepted') %>
     <%= link_to(
       "Accept",
       [:approve, namespace, page.resource],
-      class: "button accept"
+      class: "button accept",
     ) %>
   <% else %>
     <button class="accept" disabled>Accept</button>
   <% end %>
   <% if (page.resource.approval_status != 'rejected') %>
-    <%= link_to(
-      "Reject",
-      [:reject, namespace, page.resource],
-      class: "button reject"
-    )%>
+    <%# I know this is all pretty hacky. I'm sorry. I'm not really a rails developer and I didn't have time to learn to do it the right way. %>
+    <button class="reject" onclick="rejectSubmission('<%=url_for [:reject, namespace, page.resource] %>')">
+      Reject
+    </button>
   <% else %>
     <button class="reject" disabled>Reject</button>
   <% end %>

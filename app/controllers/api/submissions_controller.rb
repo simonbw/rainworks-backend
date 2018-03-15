@@ -41,7 +41,7 @@ module Api
 
     # Fields to return for a user's submission
     def submission_fields
-      [:id, :approval_status, :created_at, :installation_date, :creator_name, :description, :lat, :lng, :name, :updated_at, :image_url, :report_count, :found_it_count, :missing_count, :faded_count, :inappropriate_count]
+      [:id, :approval_status, :created_at, :installation_date, :creator_name, :description, :lat, :lng, :name, :updated_at, :image_url, :report_count, :found_it_count, :missing_count, :faded_count, :inappropriate_count, :rejection_reason]
     end
   end
 end

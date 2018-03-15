@@ -27,6 +27,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     missing_count: Field::Number,
     faded_count: Field::Number,
     inappropriate_count: Field::Number,
+    rejection_reason: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -61,6 +62,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :inappropriate_count,
     :created_at,
     :updated_at,
+    :rejection_reason,
     :id,
   ].freeze
 
