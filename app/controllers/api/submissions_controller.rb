@@ -12,12 +12,12 @@ module Api
     # POST /api/submissions
     def create
       @rainwork = Rainwork.new(submission_params)
-      @rainwork.device = Device.find_or_create_by(device_uuid: params.require(:device_uuid))
+      @rainwork.device = Device.find_or_create_by!(device_uuid: params.require(:device_uuid))
 
-      if @device.initial_submission_status == :accepted
-        @rainwork.approval_status = :accepted
-      elsif @device.initial_submission_status == :rejected
-        @rainwork.approval_status = :rejected
+      if @rainwork.device.initial_submission_status == 'accepted'
+        @rainwork.approval_status = 'accepted'
+      elsif @rainwork.device.initial_submission_status == 'rejected'
+        @rainwork.approval_status = 'rejected'
       end
 
       filename = SecureRandom.uuid

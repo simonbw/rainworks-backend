@@ -64,7 +64,7 @@ as well as a link to its edit page.
       }
     }
   </script>
-  <% if (page.resource.approval_status != 'accepted') %>
+  <% if !page.resource.accepted? %>
     <%= link_to(
       "Accept",
       [:approve, namespace, page.resource],
@@ -73,7 +73,7 @@ as well as a link to its edit page.
   <% else %>
     <button class="accept" disabled>Accept</button>
   <% end %>
-  <% if (page.resource.approval_status != 'rejected') %>
+  <% if !page.resource.rejected? %>
     <%# I know this is all pretty hacky. I'm sorry. I'm not really a rails developer and I didn't have time to learn to do it the right way. %>
     <button class="reject" onclick="rejectSubmission('<%=url_for [:reject, namespace, page.resource] %>')">
       Reject
@@ -81,7 +81,7 @@ as well as a link to its edit page.
   <% else %>
     <button class="reject" disabled>Reject</button>
   <% end %>
-  <% if (page.resource.approval_status != 'expired') %>
+  <% if !page.resource.expired? %>
     <%= link_to(
       "Expire",
       [:expire, namespace, page.resource],
