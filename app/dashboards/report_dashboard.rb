@@ -12,6 +12,8 @@ class ReportDashboard < Administrate::BaseDashboard
     device: Field::BelongsTo,
     id: Field::Number,
     report_type: Field::Enum,
+    image_url: Field::Image,
+    description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -34,6 +36,8 @@ class ReportDashboard < Administrate::BaseDashboard
     :device,
     :id,
     :report_type,
+    :image_url,
+    :description,
     :created_at,
     :updated_at,
   ].freeze
