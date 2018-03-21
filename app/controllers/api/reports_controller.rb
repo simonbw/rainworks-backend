@@ -12,7 +12,9 @@ module Api
       @report.device = Device.find_or_create_by(device_uuid: params.require(:device_uuid))
 
       if @report.save
-        NotificationsMailer.report_alert(@report).deliver_later
+        if !@report.found_it?
+          NotificationsMailer.report_alert(@report).deliver_later
+        end
         render json: @report, status: :created
       else
         render json: @report.errors, status: :unprocessable_entity
