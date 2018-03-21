@@ -23,7 +23,6 @@ module Api
       filename = SecureRandom.uuid
       object = S3_BUCKET.object(filename)
       upload_url = object.presigned_url(:put, acl: 'public-read')
-
       @rainwork.image_url = object.public_url
 
       # TODO: Do we want to have a confirmation step after the image is uploaded?
