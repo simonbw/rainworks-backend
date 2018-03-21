@@ -59,6 +59,9 @@ class DeviceDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(device)
-    "Device ##{device.device_uuid}"
+    if device.nickname
+      return "#{device.nickname} (#{device.device_uuid})"
+    end
+    "Device (#{device.device_uuid})"
   end
 end
