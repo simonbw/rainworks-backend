@@ -3,7 +3,7 @@ module Api
     # GET /api/rainworks
     def index
       @rainworks = Rainwork.where(
-        approval_status: :accepted
+        approval_status: [:accepted, :expired]
       ).select(*public_fields)
 
       render json: @rainworks
@@ -12,7 +12,19 @@ module Api
     private
     # Fields to return to general public
     def public_fields
-      [:id, :creator_name, :installation_date, :description, :lat, :lng, :name, :updated_at, :image_url, :found_it_count]
+      [
+        :id,
+        :approval_status,
+        :creator_name,
+        :installation_date,
+        :description,
+        :lat,
+        :lng,
+        :name,
+        :updated_at,
+        :image_url,
+        :found_it_count
+      ]
     end
   end
 end
