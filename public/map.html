@@ -64,27 +64,29 @@
           .then(response => response.json())
           .then(rainworks => {
             console.log(rainworks);
-            rainworks.forEach(rainwork => {
-              const marker = new google.maps.Marker({
-                position: rainwork, // already has 'lat' and 'lng'
-                map: map,
-                icon: {
-                  url: '/pin.png',
-                  size: new google.maps.Size(39, 80),
-                  scaledSize: new google.maps.Size(39 / 2, 80 / 2),
-                  anchor: new google.maps.Point(39 / 4, 80 / 2),
-                },
-                title: rainwork['name']
-              });
+            rainworks
+              .filter(rainwork => rainwork['approval_status'] === 'accepted')
+              .forEach(rainwork => {
+                const marker = new google.maps.Marker({
+                  position: rainwork, // already has 'lat' and 'lng'
+                  map: map,
+                  icon: {
+                    url: '/pin.png',
+                    size: new google.maps.Size(39, 80),
+                    scaledSize: new google.maps.Size(39 / 2, 80 / 2),
+                    anchor: new google.maps.Point(39 / 4, 80 / 2),
+                  },
+                  title: rainwork['name']
+                });
 
-              marker.addListener('click', () => {
-                tooltip.close();
-                // map.panTo(marker.getPosition());
-                tooltip.setContent(makeTooltipContent(rainwork));
-                tooltip.open(map, marker);
+                marker.addListener('click', () => {
+                  tooltip.close();
+                  // map.panTo(marker.getPosition());
+                  tooltip.setContent(makeTooltipContent(rainwork));
+                  tooltip.open(map, marker);
+                });
               });
             });
-          });
 
         function makeTooltipContent(rainwork) {
           const container = document.createElement('div');
