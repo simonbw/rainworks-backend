@@ -9,6 +9,12 @@ module Api
       render json: @rainworks
     end
 
+    def show
+      @rainwork = Rainwork.select(*public_fields).find(params.require(:id))
+
+      render json: @rainwork
+    end
+
     private
     # Fields to return to general public
     def public_fields

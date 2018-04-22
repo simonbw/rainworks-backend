@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :devices, only: [:update], param: :device_uuid
     resources :submissions, only: [:index, :create]
-    resources :rainworks, only: [:index]
+    resources :rainworks, only: [:index, :show]
     resources :reports, only: [:index, :create]
   end
 end
