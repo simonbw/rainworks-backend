@@ -45,3 +45,7 @@ gem 'exponent-server-sdk'
 gem 'attribute-defaults'
 
 gem 'counter_culture'
+
+gem 'dragonfly', '~> 1.1.5'
+gem 'dragonfly-s3_data_store'
+gem 'mime-types'

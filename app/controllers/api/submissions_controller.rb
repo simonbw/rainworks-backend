@@ -31,8 +31,26 @@ module Api
         NotificationsMailer.submission_alert(@rainwork).deliver_later
         response = {
           image_upload_url: upload_url,
+          finalize_url: finalize_api_submission_path(@rainwork)
         }
         render json: response, status: :created
+      else
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
+
+    def finalize
+      @rainwork = Rainwork.find(params.require(:id))
+
+      full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+      thumbnail = full_size_image.thumb('x300')  # to_mp3 is a custom processor
+      uid = thumbnail.store # store in the configured datastore, e.g. S3
+      @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+
+      if @rainwork.save
+        # NotificationsMailer.submission_alert(@rainwork).deliver_later
+        
+        render json: @rainwork
       else
         render json: @rainwork.errors, status: :unprocessable_entity
       end

@@ -29,6 +29,7 @@ module Api
         :name,
         :updated_at,
         :image_url,
+        :thumbnail_url,
         :found_it_count
       ]
     end

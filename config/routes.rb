@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
   namespace :api do
     resources :devices, only: [:update], param: :device_uuid
-    resources :submissions, only: [:index, :create]
+    resources :submissions, only: [:index, :create] do 
+      get :finalize, on: :member
+    end
     resources :rainworks, only: [:index, :show]
     resources :reports, only: [:index, :create]
   end
