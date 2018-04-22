@@ -28,7 +28,6 @@ module Api
       # TODO: Do we want to have a confirmation step after the image is uploaded?
 
       if @rainwork.save
-        NotificationsMailer.submission_alert(@rainwork).deliver_later
         response = {
           image_upload_url: upload_url,
           finalize_url: finalize_api_submission_path(@rainwork)
@@ -42,13 +41,17 @@ module Api
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
 
+      if @rainwork.thumbnail_url
+        return render json: { :message => "already has thumbnail" }, status: 400
+      end
+
       full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
-      thumbnail = full_size_image.thumb('x300')  # to_mp3 is a custom processor
-      uid = thumbnail.store # store in the configured datastore, e.g. S3
+      thumbnail = full_size_image.thumb('300x300#')
+      uid = thumbnail.store
       @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
       if @rainwork.save
-        # NotificationsMailer.submission_alert(@rainwork).deliver_later
+        NotificationsMailer.submission_alert(@rainwork).deliver_later
         
         render json: @rainwork
       else
