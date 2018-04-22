@@ -47,8 +47,8 @@ module Api
       end
 
       full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
-      thumbnail = full_size_image.thumb('300x300#')
-      uid = thumbnail.store
+      thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+      uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
       @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
       if @rainwork.save
