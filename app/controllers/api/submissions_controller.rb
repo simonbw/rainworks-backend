@@ -20,6 +20,7 @@ module Api
         @rainwork.approval_status = 'rejected'
       end
 
+      # TODO: This really should be async
       filename = SecureRandom.uuid
       object = S3_BUCKET.object(filename)
       upload_url = object.presigned_url(:put, acl: 'public-read')

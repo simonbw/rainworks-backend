@@ -9,6 +9,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+dragonfly.log
 
 # Ignore uploaded files in development
 /storage/*
