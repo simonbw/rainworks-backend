@@ -42,7 +42,7 @@ module Api
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
 
-      if @rainwork.thumbnail_url
+      if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
         return render json: { :message => "already has thumbnail" }, status: 400
       end
 
