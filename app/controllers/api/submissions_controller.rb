@@ -31,7 +31,7 @@ module Api
       if @rainwork.save
         response = {
           image_upload_url: upload_url,
-          finalize_url: finalize_api_submission_path(@rainwork)
+          finalize_url: finalize_api_submission_url(@rainwork)
         }
         render json: response, status: :created
       else
