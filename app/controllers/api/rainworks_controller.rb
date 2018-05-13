@@ -2,6 +2,7 @@ module Api
   class RainworksController < ApplicationController
     # GET /api/rainworks
     def index
+      # TODO: Don't include rainworks that are expired and don't show on the gallery
       @rainworks = Rainwork.where(
         approval_status: [:accepted, :expired]
       ).select(*public_fields)
@@ -30,7 +31,8 @@ module Api
         :updated_at,
         :image_url,
         :thumbnail_url,
-        :found_it_count
+        :found_it_count,
+        :show_in_gallery
       ]
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_22_191309) do
+ActiveRecord::Schema.define(version: 2018_05_13_175145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_04_22_191309) do
     t.datetime "installation_date"
     t.text "rejection_reason"
     t.string "thumbnail_url"
+    t.boolean "show_in_gallery"
     t.index ["device_id"], name: "index_rainworks_on_device_id"
   end
 

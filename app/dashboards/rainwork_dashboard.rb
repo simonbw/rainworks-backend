@@ -29,6 +29,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     faded_count: Field::Number,
     inappropriate_count: Field::Number,
     rejection_reason: Field::Text,
+    show_in_gallery: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -41,12 +42,14 @@ class RainworkDashboard < Administrate::BaseDashboard
     :approval_status,
     :report_count,
     :found_it_count,
+    :show_in_gallery,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :approval_status,
+    :show_in_gallery,
     :name,
     :creator_name,
     :description,
@@ -82,6 +85,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :lat,
     :lng,
     :approval_status,
+    :show_in_gallery,
   ].freeze
 
   # Overwrite this method to customize how rainworks are displayed
