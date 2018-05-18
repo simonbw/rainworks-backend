@@ -1,7 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_controller.default_url_options = { host: ENV['BASE_URL'] }
+  # TODO: Figure this out
+  # config.action_controller.default_url_options = { host: ENV['BASE_URL'] }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
