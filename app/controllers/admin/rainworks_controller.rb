@@ -2,8 +2,8 @@ require 'exponent-server-sdk'
 
 module Admin
   class RainworksController < Admin::ApplicationController
-
-    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions    
+    
+    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
 
     def approve
       @rainwork = Rainwork.find(params[:id])

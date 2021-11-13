@@ -8,6 +8,7 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASSWORD']
 
+    # sort list by created_at date with the most recent at the top
     def order
       @order ||= Administrate::Order.new(
         params.fetch(resource_name, {}).fetch(:order, 'created_at'),
