@@ -1,4 +1,4 @@
-class AddDeviceIdToRainwork < ActiveRecord::Migration[5.2]
+class AddInstallationDateToRainwork < ActiveRecord::Migration[5.2]
   def change
     add_column :rainworks, :installation_date, :datetime
   end
