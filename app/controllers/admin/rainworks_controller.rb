@@ -8,7 +8,6 @@ module Admin
     
     def default_params
       params[:order] ||= "created_at"
-      params[:direction] ||= 'desc'
     end
 
     def approve
