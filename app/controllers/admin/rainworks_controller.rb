@@ -7,7 +7,10 @@ module Admin
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     
     def default_params
-      params[:order] ||= "created_at"
+      resource_params = params.fetch(resource_name, {})
+      order = resource_params.fetch(:order, "created_at")
+      direction = resource_params.fetch(:direction, "desc")
+      params[resource_name] = resource_params.merge(order: order, direction: direction)
     end
 
     def approve
