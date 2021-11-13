@@ -2,16 +2,8 @@ require 'exponent-server-sdk'
 
 module Admin
   class RainworksController < Admin::ApplicationController
-    before_action :default_params
 
-    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
-    
-    def default_params
-      resource_params = params.fetch(resource_name, {})
-      order = resource_params.fetch(:order, "created_at")
-      direction = resource_params.fetch(:direction, "desc")
-      params[resource_name] = resource_params.merge(order: order, direction: direction)
-    end
+    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions    
 
     def approve
       @rainwork = Rainwork.find(params[:id])
