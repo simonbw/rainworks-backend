@@ -3,8 +3,6 @@ require 'exponent-server-sdk'
 module Admin
   class RainworksController < Admin::ApplicationController
     before_filter :default_params
-
-    # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     
     def default_params
       params[:order] ||= "created_at"
