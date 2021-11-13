@@ -2,7 +2,6 @@ require 'exponent-server-sdk'
 
 module Admin
   class RainworksController < Admin::ApplicationController
-    before_filter :default_params
     
     def default_params
       params[:order] ||= "created_at"
