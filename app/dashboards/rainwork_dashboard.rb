@@ -46,47 +46,47 @@ class RainworkDashboard < Administrate::BaseDashboard
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :approval_status,
-    :show_in_gallery,
-    :name,
-    :creator_name,
-    :description,
-    :image_url,
-    :thumbnail_url,
-    :lat,
-    :lng,
-    :installation_date,
-    :device,
-    :reports,
-    :report_count,
-    :found_it_count,
-    :missing_count,
-    :faded_count,
-    :inappropriate_count,
-    :created_at,
-    :updated_at,
-    :rejection_reason,
-    :id,
-  ].freeze
-
-  # FORM_ATTRIBUTES
-  # an array of attributes that will be displayed
-  # on the model's form (`new` and `edit`) pages.
-  # FORM_ATTRIBUTES = [
+  # # an array of attributes that will be displayed on the model's show page.
+  # SHOW_PAGE_ATTRIBUTES = [
+  #   :approval_status,
+  #   :show_in_gallery,
   #   :name,
   #   :creator_name,
-  #   :installation_date,
   #   :description,
-  #   :device,
   #   :image_url,
   #   :thumbnail_url,
   #   :lat,
   #   :lng,
-  #   :approval_status,
-  #   :show_in_gallery,
+  #   :installation_date,
+  #   :device,
+  #   :reports,
+  #   :report_count,
+  #   :found_it_count,
+  #   :missing_count,
+  #   :faded_count,
+  #   :inappropriate_count,
+  #   :created_at,
+  #   :updated_at,
+  #   :rejection_reason,
+  #   :id,
   # ].freeze
+
+  # FORM_ATTRIBUTES
+  # an array of attributes that will be displayed
+  # on the model's form (`new` and `edit`) pages.
+  FORM_ATTRIBUTES = [
+    :name,
+    :creator_name,
+    :installation_date,
+    :description,
+    :device,
+    :image_url,
+    :thumbnail_url,
+    :lat,
+    :lng,
+    :approval_status,
+    :show_in_gallery,
+  ].freeze
 
   # Overwrite this method to customize how rainworks are displayed
   # across all pages of the admin dashboard.
