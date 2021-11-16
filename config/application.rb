@@ -23,5 +23,7 @@ module RainworksApi
     config.load_defaults 5.2
     # config.middleware.use Rack::Deflater
     config.api_only = false
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
   end
 end
