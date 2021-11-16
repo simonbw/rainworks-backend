@@ -30,7 +30,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     inappropriate_count: Field::Number,
     rejection_reason: Field::Text,
     show_in_gallery: Field::Boolean,
-  }.freeze
+  }
 
   # COLLECTION_ATTRIBUTES
   # an array of attributes that will be displayed on the model's index page.
@@ -43,7 +43,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :report_count,
     :found_it_count,
     :show_in_gallery,
-  ].freeze
+  ]
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
@@ -69,12 +69,12 @@ class RainworkDashboard < Administrate::BaseDashboard
     :updated_at,
     :rejection_reason,
     :id,
-  ].freeze
+  ]
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES_EDIT = [
+  FORM_ATTRIBUTES = [
     :name,
     :creator_name,
     :installation_date,
@@ -86,21 +86,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :lng,
     :approval_status,
     :show_in_gallery,
-  ].freeze
-
-  FORM_ATTRIBUTES_NEW = [
-    :name,
-    :creator_name,
-    :installation_date,
-    :description,
-    :device,
-    :image_url,
-    :thumbnail_url,
-    :lat,
-    :lng,
-    :approval_status,
-    :show_in_gallery,
-  ].freeze
+  ]
 
   # Overwrite this method to customize how rainworks are displayed
   # across all pages of the admin dashboard.
