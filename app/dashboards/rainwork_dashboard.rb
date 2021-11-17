@@ -108,6 +108,6 @@ class RainworkDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(rainwork)
-    "RW ##{rainwork.name}"
+    "RW \"#{rainwork.name}\""
   end
 end
