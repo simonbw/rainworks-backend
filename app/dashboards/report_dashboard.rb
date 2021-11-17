@@ -11,11 +11,11 @@ class ReportDashboard < Administrate::BaseDashboard
     rainwork: Field::BelongsTo,
     device: Field::BelongsTo,
     id: Field::Number,
-    report_type: Field::Enum,
-    image_url: Field::Image,
-    description: Field::Text,
+    report_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    image_url: Field::String,
+    description: Field::Text,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -23,33 +23,48 @@ class ReportDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :rainwork,
-    :report_type,
-    :device,
+  COLLECTION_ATTRIBUTES = %i[
+    rainwork
+    device
+    id
+    report_type
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :rainwork,
-    :device,
-    :id,
-    :report_type,
-    :image_url,
-    :description,
-    :created_at,
-    :updated_at,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    rainwork
+    device
+    id
+    report_type
+    created_at
+    updated_at
+    image_url
+    description
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :rainwork,
-    :device,
-    :report_type,
+  FORM_ATTRIBUTES = %i[
+    rainwork
+    device
+    report_type
+    image_url
+    description
   ].freeze
+
+  # COLLECTION_FILTERS
+  # a hash that defines filters that can be used while searching via the search
+  # field of the dashboard.
+  #
+  # For example to add an option to search for open resources by typing "open:"
+  # in the search field:
+  #
+  #   COLLECTION_FILTERS = {
+  #     open: ->(resources) { resources.where(open: true) }
+  #   }.freeze
+  COLLECTION_FILTERS = {}.freeze
 
   # Overwrite this method to customize how reports are displayed
   # across all pages of the admin dashboard.
