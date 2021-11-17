@@ -10,7 +10,6 @@ module Admin
 
     def authenticate_admin
       # TODO Add authentication logic here.
-      http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASSWORD']
     end
 
     # sort list by created_at date with the most recent at the top
