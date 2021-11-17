@@ -15,11 +15,12 @@ class RainworkDashboard < Administrate::BaseDashboard
     creator_name: Field::String,
     creator_email: Field::String,
     description: Field::Text,
-    image_url: Field::Text,
+    image_url: Field::Image,
     approval_status: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     active: Field::Boolean,
-    lat: Field::Number.with_options(decimals: 2),
-    lng: Field::Number.with_options(decimals: 2),
+    lat: Field::LatLng,
+    # lat: Field::Number.with_options(decimals: 2),
+    lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     report_count: Field::Number,
@@ -29,7 +30,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     inappropriate_count: Field::Number,
     installation_date: Field::DateTime,
     rejection_reason: Field::Text,
-    thumbnail_url: Field::String,
+    thumbnail_url: Field::Image,
     show_in_gallery: Field::Boolean,
   }.freeze
 
@@ -39,64 +40,68 @@ class RainworkDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    device
-    reports
-    id
+    created_at
+    installation_date
     name
+    creator_name
+    approval_status
+    report_count
+    found_it_count
+    show_in_gallery
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    device
-    reports
-    id
+    approval_status
+    show_in_gallery
     name
     creator_name
-    creator_email
     description
     image_url
-    approval_status
-    active
+    thumbnail_url
     lat
     lng
-    created_at
-    updated_at
+    installation_date
+    device
+    reports
     report_count
     found_it_count
-    faded_count
     missing_count
+    faded_count
     inappropriate_count
-    installation_date
+    created_at
+    updated_at
     rejection_reason
-    thumbnail_url
-    show_in_gallery
+    id
+    # creator_email
+    # active
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    device
-    reports
     name
     creator_name
-    creator_email
+    installation_date
     description
+    device
     image_url
-    approval_status
-    active
+    thumbnail_url
     lat
     lng
-    report_count
-    found_it_count
-    faded_count
-    missing_count
-    inappropriate_count
-    installation_date
-    rejection_reason
-    thumbnail_url
+    approval_status
     show_in_gallery
+    # reports
+    # creator_email
+    # active
+    # report_count
+    # found_it_count
+    # faded_count
+    # missing_count
+    # inappropriate_count
+    # rejection_reason
   ].freeze
 
   # COLLECTION_FILTERS
@@ -114,7 +119,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how rainworks are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(rainwork)
-  #   "Rainwork ##{rainwork.id}"
-  # end
+  def display_resource(rainwork)
+    "Rainwork ##{rainwork.id}"
+  end
 end
