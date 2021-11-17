@@ -6,11 +6,14 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_admin
 
-    def authenticate_admin
-      # TODO Add authentication logic here.
-    end
+    http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASSWORD']
+    
+    # before_action :authenticate_admin
+
+    # def authenticate_admin
+    #   # TODO Add authentication logic here.
+    # end
 
     # sort list by created_at date with the most recent at the top
     def order
