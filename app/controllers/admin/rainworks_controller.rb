@@ -7,7 +7,7 @@ module Admin
 
     def edit
       @rainwork = Rainwork.find(params[:id])
-      
+      redirect_to url_for(action: :edit)
     end
     
     def approve
