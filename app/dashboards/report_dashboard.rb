@@ -12,10 +12,10 @@ class ReportDashboard < Administrate::BaseDashboard
     device: Field::BelongsTo,
     id: Field::Number,
     report_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
     image_url: Field::String,
     description: Field::Text,
+    created_at: Field::DateTime,
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,9 +25,8 @@ class ReportDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     rainwork
-    device
-    id
     report_type
+    device
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,10 +36,10 @@ class ReportDashboard < Administrate::BaseDashboard
     device
     id
     report_type
-    created_at
-    updated_at
     image_url
     description
+    created_at
+    updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -50,9 +49,7 @@ class ReportDashboard < Administrate::BaseDashboard
     rainwork
     device
     report_type
-    image_url
-    description
-  ].freeze
+    ].freeze
 
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search
