@@ -73,8 +73,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     updated_at
     rejection_reason
     id
-    # creator_email
-    # active
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -92,15 +90,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     lng
     approval_status
     show_in_gallery
-    # reports
-    # creator_email
-    # active
-    # report_count
-    # found_it_count
-    # faded_count
-    # missing_count
-    # inappropriate_count
-    # rejection_reason
   ].freeze
 
   # COLLECTION_FILTERS
