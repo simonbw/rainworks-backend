@@ -68,6 +68,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :rejection_reason,
+    :id,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -90,7 +91,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how rainworks are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(rainwork)
-    "RW \"#{rainwork.name}\""
-  end
+  # def display_resource(rainwork)
+  #   "RW \"#{rainwork.name}\""
+  # end
 end
