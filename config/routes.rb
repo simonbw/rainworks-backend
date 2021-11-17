@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       get :approve, on: :member
       get :reject, on: :member
       get :expire, on: :member
-      get :edit, on: :member
     end
     resources :devices
     resources :reports

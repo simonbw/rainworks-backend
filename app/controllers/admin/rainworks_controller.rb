@@ -5,11 +5,6 @@ module Admin
     
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
 
-    def edit
-      @rainwork = Rainwork.find(params[:id])
-      redirect_to url_for(action: :edit)
-    end
-    
     def approve
       @rainwork = Rainwork.find(params[:id])
 
