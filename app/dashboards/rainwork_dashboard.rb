@@ -19,7 +19,6 @@ class RainworkDashboard < Administrate::BaseDashboard
     approval_status: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     active: Field::Boolean,
     lat: Field::LatLng,
-    # lat: Field::Number.with_options(decimals: 2),
     lng: Field::LatLng,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
