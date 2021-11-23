@@ -42,7 +42,7 @@ module Api
     # DELETE /api/submissions
     def destroy
       @rainwork = Rainwork.find(params.require(:id))
-      @rainwork.approval_status = :deleted
+      @rainwork.approval_status = :expired
       render json: status: 200
     end
 
