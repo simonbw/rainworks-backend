@@ -43,11 +43,7 @@ module Api
     def destroy
       @rainwork = Rainwork.find(params.require(:id))
       @rainwork.approval_status = :deleted
-      
-      if @rainwork
-        render json: status: 200
-      else 
-        render json: @rainwork.errors
+      render json: status: 200
     end
 
     def finalize
