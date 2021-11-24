@@ -44,7 +44,7 @@ module Api
       @rainwork = Rainwork.find(params.require(:id))
 
       @rainwork.destroy
-      render body: nil, status: :no_content
+      render body: nil, status: 200
     end
 
     def finalize
