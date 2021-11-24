@@ -43,8 +43,8 @@ module Api
     def destroy
       @rainwork = Rainwork.find(params.require(:id))
 
-      @rainwork.approval_status = :expiredx
-      # render json: status: 200
+      @rainwork.destroy
+      render body: nil, status: :no_content
     end
 
     def finalize
