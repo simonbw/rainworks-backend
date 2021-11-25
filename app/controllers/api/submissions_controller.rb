@@ -47,8 +47,8 @@ module Api
       render status: 200
     end
 
-    # EXPIRE /api/submissions
-    def expire
+    # PUT /api/submissions
+    def update
       @rainwork = Rainwork.find(params[:id])
 
       @rainwork.approval_status = :expired
