@@ -1,5 +1,5 @@
 class NotificationsMailer < ApplicationMailer
-	default to: ENV['NOTIFICATIONS_TO_EMAIL']
+	default to: ENV['NOTIFICATIONS_FROM_EMAIL']
 	def submission_alert(rainwork)
 		@rainwork = rainwork
 		mail subject: 'Someone submitted a rainwork'
