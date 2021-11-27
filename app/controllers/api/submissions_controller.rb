@@ -76,7 +76,7 @@ module Api
       @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
       if @rainwork.save
-        NotificationsMailer.submission_alert(@rainwork).deliver_now!
+        NotificationsMailer.submission_alert(@rainwork).deliver_later!
         
         render json: @rainwork
       else
