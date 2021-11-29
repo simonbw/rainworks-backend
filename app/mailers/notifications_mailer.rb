@@ -1,16 +1,7 @@
-# class NotificationsMailer < ApplicationMailer
-# 	default to: ENV['NOTIFICATIONS_TO_EMAIL']
-# 	def submission_alert(rainwork)
-# 		@rainwork = rainwork
-# 		mail subject: 'Someone submitted a rainwork'
-# 	end
-
-# 	def report_alert(report)
-# 		@report = report
-# 		mail subject: "Someone reported a rainwork: #{@report.report_type}"
-# 	end
-# end
-
+class NotificationsMailer < ApplicationMailer
+	default to: ENV['NOTIFICATIONS_TO_EMAIL']
+	def submission_alert(rainwork)
+		
 # using SendGrid's Ruby Library
 # https://github.com/sendgrid/sendgrid-ruby
 require 'sendgrid-ruby'
@@ -27,3 +18,10 @@ response = sg.client.mail._('send').post(request_body: mail.to_json)
 puts response.status_code
 puts response.body
 puts response.headers
+	end
+
+	def report_alert(report)
+		@report = report
+		mail subject: "Someone reported a rainwork: #{@report.report_type}"
+	end
+end
