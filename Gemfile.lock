@@ -1365,6 +1365,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     ruby_dep (1.5.0)
+    ruby_http_client (3.5.2)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -1374,6 +1375,8 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.6)
+    sendgrid-ruby (6.6.0)
+      ruby_http_client (~> 3.4)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -1418,6 +1421,7 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rails (~> 5.2.0.rc1)
+  sendgrid-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
