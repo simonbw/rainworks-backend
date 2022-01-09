@@ -47,38 +47,33 @@ module Api
       render status: 200
     end
 
-    # PUT /api/submissions TO EXPIRE
-    def update
-      @rainwork = Rainwork.find(params[:id])
-
-      @rainwork.approval_status = :expired
-
-      if @rainwork.save
-        send_notification(@rainwork, 'Your rainwork has expired.', :expired);
-
-        flash[:expired] = 'Rainwork was expired'
-        redirect_to url_for(action: :show)
-      else
-        render json: @rainwork.errors, status: :unprocessable_entity
-      end
-    end
-
-    # # PUT /api/submissions TO UPDATE
+    # # PUT /api/submissions TO EXPIRE
     # def update
     #   @rainwork = Rainwork.find(params[:id])
 
-    #   @rainwork = submission_params
+    #   @rainwork.approval_status = :expired
 
     #   if @rainwork.save
-    #     send_notification(@rainwork, 'Your rainwork has been edited.', :expired);
-    #     response = {
-    #       message: 'Your rainwork has been edited.'
-    #     }
-    #     render json: response, status: :edited
+    #     send_notification(@rainwork, 'Your rainwork has expired.', :expired);
+
+    #     flash[:expired] = 'Rainwork was expired'
+    #     redirect_to url_for(action: :show)
     #   else
     #     render json: @rainwork.errors, status: :unprocessable_entity
     #   end
     # end
+
+    # PUT /api/submissions TO UPDATE
+    def update
+      @rainwork = Rainwork.find(params[:id])
+
+      if @rainwork.update_attributes(submission_params)
+        send_notification(@rainwork, 'Your rainwork has been edited.', :update);
+        render json: {status: 'SUCCESS', message:'Updated rainwork', data:@rainwork},status: :ok
+      else
+        render json: {status: 'ERROR', message:'Article not updated', data:@rainwork.errors},status: :unprocessable_entity
+      end
+    end
 
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
