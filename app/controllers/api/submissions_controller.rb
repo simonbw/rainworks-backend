@@ -67,11 +67,21 @@ module Api
     def update
       @rainwork = Rainwork.find(params[:id])
 
+       # TODO: This really should be async
+       filename = SecureRandom.uuid
+       object = S3_BUCKET.object(filename)
+       upload_url = object.presigned_url(:put, acl: 'public-read')
+       @rainwork.image_url = object.public_url
+
       if @rainwork.update_attributes(submission_params)
-        send_notification(@rainwork, 'Your rainwork has been edited.', :update);
-        render json: {status: 'SUCCESS', message:'Updated rainwork', data:@rainwork},status: :ok
+        # send_notification(@rainwork, 'Your rainwork has been edited.', :update);
+        response = {
+          image_upload_url: upload_url,
+          finalize_url: finalize_api_submission_url(@rainwork)
+        }
+        render json: response, status: :update
       else
-        render json: {status: 'ERROR', message:'Article not updated', data:@rainwork.errors},status: :unprocessable_entity
+        render json: @rainwork.errors,status: :unprocessable_entity
       end
     end
 
