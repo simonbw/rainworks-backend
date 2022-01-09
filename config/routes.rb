@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :devices, only: [:update], param: :device_uuid
     resources :submissions, only: [:index, :create, :update] do 
       get :finalize, on: :member
-      get :expire, on: :member
+      put :expire, on: :member
     end
     resources :rainworks, only: [:index, :show]
     resources :reports, only: [:index, :create]

@@ -47,21 +47,21 @@ module Api
       render status: 200
     end
 
-    # # PUT /api/submissions TO EXPIRE
-    # def update
-    #   @rainwork = Rainwork.find(params[:id])
+    # PUT /api/submissions/:id/expire TO EXPIRE
+    def expire
+      @rainwork = Rainwork.find(params[:id])
 
-    #   @rainwork.approval_status = :expired
+      @rainwork.approval_status = :expired
 
-    #   if @rainwork.save
-    #     send_notification(@rainwork, 'Your rainwork has expired.', :expired);
+      if @rainwork.save
+        send_notification(@rainwork, 'Your rainwork has expired.', :expired);
 
-    #     flash[:expired] = 'Rainwork was expired'
-    #     redirect_to url_for(action: :show)
-    #   else
-    #     render json: @rainwork.errors, status: :unprocessable_entity
-    #   end
-    # end
+        flash[:expired] = 'Rainwork has expired'
+        redirect_to url_for(action: :show)
+      else
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
 
     # PUT /api/submissions TO UPDATE
     def update
