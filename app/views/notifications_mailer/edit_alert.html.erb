@@ -1,0 +1,18 @@
+<p>
+   View it in the admin interface:
+    <a href="https://rainworks-backend.herokuapp.com/admin/rainworks/<%= @rainwork.id %>">
+        https://rainworks-backend.herokuapp.com/admin/rainworks/<%= @rainwork.id %>
+    </a>
+</p>
+
+<dl>
+    <dt>Title:</dt> <dd><%= @rainwork.name %></dd>
+    <dt>Creator:</dt> <dd><%= @rainwork.creator_name %></dd>
+    <dt>Description:</dt> <dd><%= @rainwork.description %></dd>
+    <dt>Submitted At:</dt> <dd><%= @rainwork.created_at %></dd>
+    <dt>lat:</dt> <dd><%= @rainwork.lat %></dd>
+    <dt>lng:</dt> <dd><%= @rainwork.lng %></dd>
+    <dt>Installation Date:</dt> <dd><%= @rainwork.installation_date %></dd>
+    <dt>Image:</dt> <dd><img style="max-width: 320px" src="<%= @rainwork.image_url %>"</dd>
+    <dt>device_uuid:</dt> <dd><%= @rainwork.device.device_uuid %></dd>
+</dl>

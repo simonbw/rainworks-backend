@@ -1,12 +1,11 @@
 class NotificationsMailer < ApplicationMailer
 	default :from => ENV['NOTIFICATIONS_FROM_EMAIL']
+	def submission_alert(rainwork)
+		@rainwork = rainwork
+		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject=> 'Someone submitted a rainwork'
+	end
 
 	def edit_alert(rainwork)
-		@rainwork = rainwork
-		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject=> 'Someone edited a rainwork'
-	end
-	
-	def submission_alert(rainwork)
 		@rainwork = rainwork
 		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject=> 'Someone submitted a rainwork'
 	end

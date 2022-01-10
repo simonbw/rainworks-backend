@@ -54,10 +54,7 @@ module Api
       @rainwork.approval_status = :expired
 
       if @rainwork.save
-        send_notification(@rainwork, 'Your rainwork has expired.', :expired);
-
-        flash[:expired] = 'Rainwork has expired'
-        redirect_to url_for(action: :show)
+        # send_notification(@rainwork, 'Your rainwork has expired.', :expired);
       else
         render json: @rainwork.errors, status: :unprocessable_entity
       end
