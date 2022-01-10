@@ -7,7 +7,7 @@ class NotificationsMailer < ApplicationMailer
 
 	def edit_alert(rainwork)
 		@rainwork = rainwork
-		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject=> 'Someone submitted a rainwork'
+		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject=> 'Someone edited a rainwork'
 	end
 
 	def report_alert(report)
