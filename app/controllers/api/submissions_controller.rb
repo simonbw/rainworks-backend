@@ -69,7 +69,7 @@ module Api
       @rainwork.approval_status = :edit_pending
 
       if @rainwork.update_attributes(submission_params)
-        # NotificationsMailer.submission_edit_alert(@rainwork).deliver
+        NotificationsMailer.submission_alert(@rainwork).deliver
         render json: {status: 'SUCCESS', message:'Updated rainwork', data:@rainwork}, status: :ok
       else
         render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
