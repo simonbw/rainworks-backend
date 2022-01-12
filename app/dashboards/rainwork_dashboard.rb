@@ -56,6 +56,7 @@ class RainworkDashboard < Administrate::BaseDashboard
     show_in_gallery
     name
     creator_name
+    creator_email
     description
     image_url
     thumbnail_url
@@ -81,6 +82,7 @@ class RainworkDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     creator_name
+    creator_email
     installation_date
     description
     device
