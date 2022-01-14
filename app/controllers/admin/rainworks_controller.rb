@@ -101,7 +101,7 @@ module Admin
 
     def send_notification(rainwork, body, notification_type)
       token = rainwork.device&.push_token
-      if token and Exponent::is_exponent_push_token?(token&.data)
+      if token and Exponent::is_exponent_push_token?(token)
         message = {
           to: token,
           body: body,
