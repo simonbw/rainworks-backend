@@ -20,7 +20,7 @@ module Api
 
       if @report.save
         if !@report.found_it?
-          NotificationsMailer.report_alert(@report).deliver_later
+          NotificationsMailer.report_alert(@report).deliver
         end
         response = { :report => @report }
         if (upload_url) then response[:image_upload_url] = upload_url end

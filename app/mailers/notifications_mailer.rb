@@ -12,6 +12,6 @@ class NotificationsMailer < ApplicationMailer
 
 	def report_alert(report)
 		@report = report
-		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], subject => "Someone reported a rainwork: #{@report.report_type}"
+		mail :to => ENV['NOTIFICATIONS_TO_EMAIL'], :subject => "Someone reported a rainwork: #{@report.report_type}"
 	end
 end
