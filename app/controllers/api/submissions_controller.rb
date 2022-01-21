@@ -43,7 +43,7 @@ module Api
     def destroy
       @rainwork = Rainwork.find(params.require(:id))
 
-      @rainwork.destroy
+      @rainwork.delete_all
       render status: 200
     end
 
@@ -54,7 +54,6 @@ module Api
       @rainwork.approval_status = :expired
 
       if @rainwork.save
-        # send_notification(@rainwork, 'Your rainwork has expired.', :expired);
       else
         render json: @rainwork.errors, status: :unprocessable_entity
       end
@@ -81,6 +80,26 @@ module Api
         render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
       end
     end
+
+    # def improve
+    #   @rainwork = Rainwork.find(params.require(:id))
+
+    #   if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
+    #     return render json: { :message => "already has thumbnail" }, status: 400
+    #   end
+
+    #   full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+    #   thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+    #   uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
+    #   @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+
+    #   if @rainwork.save
+    #     NotificationsMailer.edit_alert(@rainwork).deliver
+    #     render json: @rainwork
+    #   else
+    #     render json: @rainwork.errors, status: :unprocessable_entity
+    #   end
+    # end
 
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
