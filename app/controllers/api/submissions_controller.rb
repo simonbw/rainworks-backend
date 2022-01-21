@@ -43,7 +43,9 @@ module Api
     def destroy
       @rainwork = Rainwork.find(params.require(:id))
 
-      @rainwork.delete_all
+      @rainwork.destroy
+      @rainwork.destroy_all
+
       render status: 200
     end
 
