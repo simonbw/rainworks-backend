@@ -41,10 +41,10 @@ module Api
 
     # DELETE /api/submissions
     def destroy
-      @rainwork = Rainwork.find(params.require(:id))
+      @rainwork = Rainwork.find(params.require(:id)).destroy
 
-      @rainwork.destroy
-      @rainwork.destroy_all
+      # Rainwork.destroy(:1d)
+      # Rainwork.destroy_all(:id)
 
       render status: 200
     end
