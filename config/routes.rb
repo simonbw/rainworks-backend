@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     resources :devices, only: [:update], param: :device_uuid
-    resources :submissions, only: [:index, :create, :update] do 
+    resources :submissions, only: [:index, :create, :update, :destroy] do 
       get :finalize, on: :member
       put :expire, on: :member
     end
