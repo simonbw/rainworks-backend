@@ -43,9 +43,6 @@ module Api
     def destroy
       @rainwork = Rainwork.find(params.require(:id)).destroy
 
-      # Rainwork.destroy(:1d)
-      # Rainwork.destroy_all(:id)
-
       render json: {status: 'Deleted', messsage: 'Rainwork deleted'}
     end
 
