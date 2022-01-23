@@ -46,7 +46,7 @@ module Api
       # Rainwork.destroy(:1d)
       # Rainwork.destroy_all(:id)
 
-      render status: 200
+      render json: @rainwork status: 200
     end
 
     # PUT /api/submissions/:id/expire TO EXPIRE
