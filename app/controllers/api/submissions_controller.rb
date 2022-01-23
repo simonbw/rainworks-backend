@@ -72,7 +72,7 @@ module Api
       if @rainwork.update_attributes(submission_params)
         response = {
           image_upload_url: upload_url,
-          finalize_url: finalize_api_submission_url(@rainwork)
+          improve_url: improve_api_submission_url(@rainwork)
         }
         render json:response, status: :ok
         # NotificationsMailer.edit_alert(@rainwork).deliver
