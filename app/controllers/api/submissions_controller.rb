@@ -71,34 +71,35 @@ module Api
 
       if @rainwork.update_attributes(submission_params)
         response = {
-          image_upload_url: upload_url
+          image_upload_url: upload_url,
+          finalize_url: finalize_api_submission_url(@rainwork)
         }
         render json:response, status: :ok
-        NotificationsMailer.edit_alert(@rainwork).deliver
+        # NotificationsMailer.edit_alert(@rainwork).deliver
       else
         render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
       end
     end
 
-    # def improve
-    #   @rainwork = Rainwork.find(params.require(:id))
+    def improve
+      @rainwork = Rainwork.find(params.require(:id))
 
-    #   if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
-    #     return render json: { :message => "already has thumbnail" }, status: 400
-    #   end
+      # if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
+      #   return render json: { :message => "already has thumbnail" }, status: 400
+      # end
 
-    #   full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
-    #   thumbnail = full_size_image.thumb('300x300#').encode('jpg')
-    #   uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
-    #   @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+      full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+      thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+      uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
+      @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
-    #   if @rainwork.save
-    #     NotificationsMailer.edit_alert(@rainwork).deliver
-    #     render json: @rainwork
-    #   else
-    #     render json: @rainwork.errors, status: :unprocessable_entity
-    #   end
-    # end
+      if @rainwork.save
+        NotificationsMailer.edit_alert(@rainwork).deliver
+        render json: @rainwork
+      else
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
 
     def finalize
       @rainwork = Rainwork.find(params.require(:id))

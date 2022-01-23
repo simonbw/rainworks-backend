@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :submissions, only: [:index, :create, :update, :destroy] do 
       get :finalize, on: :member
       put :expire, on: :member
+      get :improve, on: :member
     end
     resources :rainworks, only: [:index, :show]
     resources :reports, only: [:index, :create]
