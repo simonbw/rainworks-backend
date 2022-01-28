@@ -3,5 +3,5 @@ class Rainwork < ApplicationRecord
   attr_default :approval_status, :pending
   attr_default :show_in_gallery, true
   belongs_to :device
-  has_many :reports
+  has_many :reports, dependent: :destroy
 end
