@@ -58,7 +58,7 @@ module Api
       end
     end
 
-    # PUT /api/submissions TO UPDATE
+    # PUT /api/submissions/:id TO UPDATE
     def update
       @rainwork = Rainwork.find(params[:id])
       @rainwork.approval_status = :edit_pending
@@ -81,12 +81,10 @@ module Api
       end
     end
 
+    # GET /api/submissions/:id/improve 
+    # Endpoint to update edited rainwork thumbnail image and send email notification
     def improve
       @rainwork = Rainwork.find(params.require(:id))
-
-      # if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
-      #   return render json: { :message => "already has thumbnail" }, status: 400
-      # end
 
       full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
       thumbnail = full_size_image.thumb('300x300#').encode('jpg')
