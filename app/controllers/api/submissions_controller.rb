@@ -106,14 +106,14 @@ module Api
       #   return render json: { :message => "already has thumbnail" }, status: 400
       # end
 
-      full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
-      thumbnail = full_size_image.thumb('300x300#').encode('jpg')
-      uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
-      @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+      # full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+      # thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+      # uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
+      # @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
-      if @rainwork.save
+      if @rainwork
         NotificationsMailer.submission_alert(@rainwork).deliver
-        render json: @rainwork
+        render json: @rainwork, status: :ok
       else
         render json: @rainwork.errors, status: :unprocessable_entity
       end
