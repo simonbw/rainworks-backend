@@ -102,9 +102,9 @@ module Api
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
 
-      if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
-        return render json: { :message => "already has thumbnail" }, status: 400
-      end
+      # if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
+      #   return render json: { :message => "already has thumbnail" }, status: 400
+      # end
 
       full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
       thumbnail = full_size_image.thumb('300x300#').encode('jpg')
