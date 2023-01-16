@@ -111,12 +111,14 @@ module Api
       # uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
       # @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
-      if @rainwork
-        NotificationsMailer.submission_alert(@rainwork).deliver
-        render json: @rainwork, status: :ok
-      else
-        render json: @rainwork.errors, status: :unprocessable_entity
-      end
+      # if @rainwork
+      #   NotificationsMailer.submission_alert(@rainwork).deliver
+      #   render json: @rainwork, status: :ok
+      # else
+      #   render json: @rainwork.errors, status: :unprocessable_entity
+      # end
+      render json: @rainwork, status: :ok
+
     end
 
     private
