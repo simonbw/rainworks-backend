@@ -33,7 +33,6 @@ module Api
           image_upload_url: upload_url,
           finalize_url: finalize_api_submission_url(@rainwork)
         }
-         NotificationsMailer.submission_alert(@rainwork).deliver
         render json: response, status: :created
       else
         render json: @rainwork.errors, status: :unprocessable_entity
@@ -100,25 +99,25 @@ module Api
       end
     end
 
-    # def finalize
-    #   @rainwork = Rainwork.find(params.require(:id))
+    def finalize
+      @rainwork = Rainwork.find(params.require(:id))
 
-    #   # if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
-    #   #   return render json: { :message => "already has thumbnail" }, status: 400
-    #   # end
+      # if @rainwork.thumbnail_url && !@rainwork.thumbnail_url.empty?
+      #   return render json: { :message => "already has thumbnail" }, status: 400
+      # end
 
-    #   # full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
-    #   # thumbnail = full_size_image.thumb('300x300#').encode('jpg')
-    #   # uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
-    #   # @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+      # full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+      # thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+      # uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
+      # @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
 
-    #   if @rainwork
-    #     NotificationsMailer.submission_alert(@rainwork).deliver
-    #     render json: @rainwork, status: :ok
-    #   else
-    #     render json: @rainwork.errors, status: :unprocessable_entity
-    #   end
-    # end
+      if @rainwork
+        NotificationsMailer.submission_alert(@rainwork).deliver
+        render json: @rainwork, status: :ok
+      else
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
 
     private
     def submission_params
