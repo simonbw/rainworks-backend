@@ -7,7 +7,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'rails', '~> 7.0.1'
 gem 'pg'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 6.0.2'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
