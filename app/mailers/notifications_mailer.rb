@@ -1,7 +1,7 @@
-require 'sendgrid-ruby'
-include SendGrid
-
 class NotificationsMailer < ApplicationMailer
+	require 'sendgrid-ruby'
+	include SendGrid
+	
 	default :from => ENV['NOTIFICATIONS_FROM_EMAIL']
 
 	def test_alert(rainwork)
