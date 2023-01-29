@@ -5,7 +5,7 @@ ruby '3.1.3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'rails', '~> 7.0.0.rc1'
+gem 'rails', '~> 7.0.1'
 gem 'pg'
 gem 'puma', '~> 3.11'
 
@@ -50,6 +50,3 @@ gem 'dragonfly', '~> 1.1.5'
 gem 'dragonfly-s3_data_store'
 gem 'mime-types'
 gem 'sendgrid-ruby'
-gem 'net-smtp', require: false
-gem 'net-imap', require: false
-gem 'net-pop', require: false

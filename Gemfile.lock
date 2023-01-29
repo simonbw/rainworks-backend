@@ -1636,12 +1636,9 @@ DEPENDENCIES
   exponent-server-sdk
   listen (>= 3.0.5, < 3.2)
   mime-types
-  net-imap
-  net-pop
-  net-smtp
   pg
   puma (~> 3.11)
-  rails (~> 7.0.0.rc1)
+  rails (~> 7.0.1)
   sendgrid-ruby
   spring
   spring-watcher-listen (~> 2.0.0)
