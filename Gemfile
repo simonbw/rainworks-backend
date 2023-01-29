@@ -50,3 +50,7 @@ gem 'dragonfly', '~> 1.1.5'
 gem 'dragonfly-s3_data_store'
 gem 'mime-types'
 gem 'sendgrid-ruby'
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-ftp', require: false
