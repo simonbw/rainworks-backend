@@ -68,7 +68,7 @@ module Api
       #  object = S3_BUCKET.object(filename)
       #  upload_url = object.presigned_url(:put, acl: 'public-read')
       #  @rainwork.image_url = object.public_url
-      render json: @rainwork, status: :unprocessable_entity
+      render json: {status: 'Edited', messsage: 'Rainwork edited'}
       # if @rainwork.update_attributes(submission_params)
       #   response = {
       #     # image_upload_url: upload_url,
