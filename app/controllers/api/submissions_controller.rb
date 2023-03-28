@@ -64,14 +64,14 @@ module Api
       @rainwork.approval_status = :edit_pending
 
        # TODO: This really should be async
-       filename = SecureRandom.uuid
-       object = S3_BUCKET.object(filename)
-       upload_url = object.presigned_url(:put, acl: 'public-read')
-       @rainwork.image_url = object.public_url
+      #  filename = SecureRandom.uuid
+      #  object = S3_BUCKET.object(filename)
+      #  upload_url = object.presigned_url(:put, acl: 'public-read')
+      #  @rainwork.image_url = object.public_url
 
       if @rainwork.update_attributes(submission_params)
         response = {
-          image_upload_url: upload_url,
+          # image_upload_url: upload_url,
           improve_url: improve_api_submission_url(@rainwork)
         }
         render json:response, status: :ok
