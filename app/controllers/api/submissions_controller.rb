@@ -78,7 +78,7 @@ module Api
       #   NotificationsMailer.edit_alert(@rainwork).deliver
       # else
       #   render json: @rainwork, status: :unprocessable_entity
-      end
+      # end
     end
 
     # GET /api/submissions/:id/improve 
