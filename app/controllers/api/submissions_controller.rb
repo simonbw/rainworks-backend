@@ -77,7 +77,7 @@ module Api
         render json:response, status: :ok
         NotificationsMailer.edit_alert(@rainwork).deliver
       else
-        render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
+        render json: @rainwork.errors, status: :unprocessable_entity
       end
     end
 
