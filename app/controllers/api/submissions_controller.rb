@@ -76,7 +76,7 @@ module Api
           improve_url: improve_api_submission_url(@rainwork)
         }
         render json:response, status: :ok
-        # NotificationsMailer.edit_alert(@rainwork).deliver
+        NotificationsMailer.edit_alert(@rainwork).deliver
       else
         render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
       end
