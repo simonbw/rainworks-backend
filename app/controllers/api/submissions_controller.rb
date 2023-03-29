@@ -69,23 +69,17 @@ module Api
        upload_url = object.presigned_url(:put, acl: 'public-read')
        @rainwork.image_url = object.public_url
 
-      response = {
-        image_upload_url: upload_url,
-        improve_url: improve_api_submission_url(@rainwork)
-      }
-      
-      render json:response, status: :ok
 
-      # if @rainwork.update_attributes(submission_params)
-      #   response = {
-      #     image_upload_url: upload_url,
-      #     # improve_url: improve_api_submission_url(@rainwork)
-      #   }
-      #   render json:response, status: :ok
-      #   # NotificationsMailer.edit_alert(@rainwork).deliver
-      # else
-      #   render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
-      # end
+      if @rainwork.update(submission_params)
+        response = {
+          image_upload_url: upload_url,
+          improve_url: improve_api_submission_url(@rainwork)
+        }
+        render json:response, status: :ok
+        # NotificationsMailer.edit_alert(@rainwork).deliver
+      else
+        render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
+      end
     end
 
     # GET /api/submissions/:id/improve 
