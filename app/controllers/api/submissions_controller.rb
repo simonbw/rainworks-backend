@@ -58,6 +58,49 @@ module Api
       end
     end
 
+    # PUT /api/submissions/:id TO UPDATE
+    def update
+      @rainwork = Rainwork.find(params[:id])
+      @rainwork.approval_status = :edit_pending
+
+       # TODO: This really should be async
+       filename = SecureRandom.uuid
+       object = S3_BUCKET.object(filename)
+       upload_url = object.presigned_url(:put, acl: 'public-read')
+       @rainwork.image_url = object.public_url
+
+       render json: {status: 'Editing', data: upload_url }
+
+      # if @rainwork.update_attributes(submission_params)
+      #   response = {
+      #     image_upload_url: upload_url,
+      #     improve_url: improve_api_submission_url(@rainwork)
+      #   }
+      #   render json:response, status: :ok
+      #   NotificationsMailer.edit_alert(@rainwork).deliver
+      # else
+      #   render json: {status: 'ERROR', message:'Rainwork not updated', data:@rainwork.errors}, status: :unprocessable_entity
+      # end
+    end
+
+    # GET /api/submissions/:id/improve 
+    # Endpoint to update edited rainwork thumbnail image and send email notification
+    def improve
+      @rainwork = Rainwork.find(params.require(:id))
+
+      full_size_image = Dragonfly.app.fetch_url(@rainwork.image_url)
+      thumbnail = full_size_image.thumb('300x300#').encode('jpg')
+      uid = thumbnail.store(path: "thumbnails/#{@rainwork.id}.jpg")
+      @rainwork.thumbnail_url = Dragonfly.app.remote_url_for(uid)
+
+      if @rainwork.save
+        NotificationsMailer.edit_alert(@rainwork).deliver
+        render json: @rainwork
+      else
+        render json: @rainwork.errors, status: :unprocessable_entity
+      end
+    end
+
     def finalize
       @rainwork = Rainwork.find(params.require(:id))
 
