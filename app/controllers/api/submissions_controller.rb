@@ -70,7 +70,8 @@ module Api
        @rainwork.image_url = object.public_url
 
       response = {
-        image_upload_url: upload_url
+        image_upload_url: upload_url,
+        submission_params
       }
       
       render json:response, status: :ok
